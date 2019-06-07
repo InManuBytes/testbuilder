@@ -13,23 +13,31 @@ var detectNetwork = function(cardNumber) {
   // The American Express network always starts with a 34 or 37 and is 15 digits long
 
   // Once you've read this, go ahead and try to implement this function, then return to the console.
-  let prefix = parseInt(cardNumber[0]+cardNumber[1]);
-  let length = cardNumber.length;
-  if (prefix === 38 || prefix === 39){
-      if (length === 14){
+  let cardNumberInt = parseInt(cardNumber);
+
+  //Diner's club starts with 38 or 39 and is 14 digits long
+  let dinersClub = /^3[89]\d{12}$/;
+  //American Express starts with 34 or 37 and is 15 digits long
+  let americanExp = /^3[47]\d{13}$/;
+  //Visa starts with a 4 and is 13, 16, 19 digits long
+  let visa = /^4(\d{12}$|\d{15}$|\d{18}$)/;
+  //MasterCard starts with 51, 52, 53, 54, 55 and is 16 digits long
+  let masterCard = /^5[1-5]\d{14}$/;
+  //Discover starts with 6011, 644-649, or 65, and a length of 16 or 19
+  let discover = /(^6011(\d{12}|\d{15})$)|(^64[4-9](\d{13}|\d{16})$)|(^65(\d{14}|\d{17})$)/
+  //Maestro always has a prefix of 5018, 5020, 5038, or 6304, and a length of 12-19.
+  let maestro = /(^50(18|20|38)|^6304)\d{8,15}$/;
+  if (dinersClub.test(cardNumberInt)){
         return 'Diner\'s Club';
-      }
-  } else if (prefix === 34 || prefix === 37){
-      if (length === 15){
+  } else if (americanExp.test(cardNumberInt)){
         return 'American Express';
-      }
-  } else if (cardNumber[0] === '4'){
-    if (length === 13 || length === 16 || length === 19){
+  } else if (visa.test(cardNumber)){
       return 'Visa';
-    }
-  } else if (prefix === 51 || prefix === 52 || prefix === 53 || prefix === 54 || prefix === 55){
-    if (length === 16){
+  } else if (masterCard.test(cardNumber)){
       return 'MasterCard';
-    }
+  } else if (discover.test(cardNumber)){
+      return 'Discover';
+  } else if (maestro.test(cardNumber)){
+      return 'Maestro';
   }
 };
