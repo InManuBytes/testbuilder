@@ -6,7 +6,7 @@
 // You don't actually want to fill *this* value in on line 9, but you'll see
 // other places in this file where you'll replace the FILL_ME_IN with a
 // different value.
-var FILL_ME_IN = 'Fill this value in';
+//var FILL_ME_IN = 'Fill this value in';
  
 /*
 describe('Introduction to Mocha Tests - READ ME FIRST', function() {
@@ -319,3 +319,43 @@ describe('Maestro', function() {
   });
 });
 
+describe('China UnionPay', function() {
+  var expect = chai.expect;
+
+  it('has a prefix of 622126 and a length of 16.', function(){
+    expect(detectNetwork('6221261234567890')).to.equal('China UnionPay');
+  });
+  it('has a prefix of 622701 and a length of 17.', function(){
+    expect(detectNetwork('62270112345678901')).to.equal('China UnionPay');
+  });
+  it('has a prefix of 622390 and a length of 18.', function(){
+    expect(detectNetwork('622390123456789')).to.equal('China UnionPay');
+  });
+  it('has a prefix of 622478 and a length of 19.', function(){
+    expect(detectNetwork('6224781234567890123')).to.equal('China UnionPay');
+  });
+  it('has a prefix of 622925 and a length of 16.', function(){
+    expect(detectNetwork('6229251234567890')).to.equal('China UnionPay');
+  });
+  it('has a prefix of 624 and a length of 17.', function(){
+    expect(detectNetwork('62412345678901234')).to.equal('China UnionPay');
+  });
+  it('has a prefix of 625 and a length of 16.', function(){
+    expect(detectNetwork('6251234567890123')).to.equal('China UnionPay');
+  });
+  it('has a prefix of 626 and a length of 18.', function(){
+    expect(detectNetwork('626123456789012345')).to.equal('China UnionPay');
+  });
+  it('has a prefix of 6282 and a length of 16.', function(){
+    expect(detectNetwork('6282123456789012')).to.equal('China UnionPay');
+  });
+  it('has a prefix of 6283 and a length of 17.', function(){
+    expect(detectNetwork('62831234567890123')).to.equal('China UnionPay');
+  });
+  it('has a prefix of 6284 and a length of 18.', function(){
+    expect(detectNetwork('628312345678901234')).to.equal('China UnionPay');
+  });
+  it('has a prefix of 6288 and a length of 19.', function(){
+    expect(detectNetwork('6288123456789012345')).to.equal('China UnionPay');
+  });
+});
