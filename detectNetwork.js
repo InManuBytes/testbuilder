@@ -28,20 +28,24 @@ var detectNetwork = function(cardNumber) {
   //Maestro always has a prefix of 5018, 5020, 5038, or 6304, and a length of 12-19.
   let maestro = /(^50(18|20|38)|^6304)\d{8,15}$/;
   //China UnionPay always has a prefix of 622126-622925, 624-626, or 6282-6288 and a length of 16-19.
-  let chinaUnion = /(^6221[2-9][6-9]\d{10,13}$)|(^622[2-8][0-9][0-9]\d{10,13}$)|(^6229[0-2][0-5]\d{10,13}$)|(^62[4-6]\d{13,16}$)|(^628[2-8]\d{12,15}$)/;
+  let chinaUnion = /(^62212[6-9]\d{10,13}$)|(^6221[3-9][0-9]\d{10,13}$)|(^622[2-8][0-9][0-9]\d{10,13}$)|(^6229[0-1][0-9]\d{10,13}$)|(^62292[0-5]\d{10,13}$)|(^62[4-6]\d{13,16}$)|(^628[2-8]\d{12,15}$)/;
+  //Switch always has a prefix of 4903, 4905, 4911, 4936, 564182, 633110, 6333, or 6759 and a length of 16, 18, or 19
+  let switchExp = /(^49(03|05|11|36)(\d{12}|\d{14,15})$)|(^564182(\d{10}|\d{12,13})$)|(^633110(\d{10}|\d{12,13})$)|(^6(333|759)(\d{12}|\d{14,15})$)/;
   if (dinersClub.test(cardNumberInt)){
-        return 'Diner\'s Club';
+    return 'Diner\'s Club';
   } else if (americanExp.test(cardNumberInt)){
-        return 'American Express';
+    return 'American Express';
+  } else if (switchExp.test(cardNumber)){
+    return 'Switch';
   } else if (visa.test(cardNumber)){
-      return 'Visa';
+    return 'Visa';
   } else if (masterCard.test(cardNumber)){
-      return 'MasterCard';
+    return 'MasterCard';
   } else if (discover.test(cardNumber)){
-      return 'Discover';
+    return 'Discover';
   } else if (maestro.test(cardNumber)){
-      return 'Maestro';
+    return 'Maestro';
   } else if (chinaUnion.test(cardNumber)){
-      return 'China UnionPay';
+    return 'China UnionPay';
   }
 };
